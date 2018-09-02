@@ -1,0 +1,70 @@
+
+\documentclass[11pt]{article}
+\usepackage{standalone}
+\usepackage[margin=0.75in, headheight=20pt]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{tikz}
+\usepackage{sansmath}
+\usetikzlibrary{shadings,intersections}
+
+\usepackage{caption,tabularx,booktabs}
+
+\usepackage{rotating}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{.25em}
+\renewcommand{\baselinestretch}{1.0}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\rhead{ Clarke | Blostein | Queen's University}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\usepackage{courier}
+
+\usepackage[]{algorithm2e}
+\usepackage{mathrsfs}
+
+\usepackage{etoolbox}
+\patchcmd{\thebibliography}{\chapter*}{\section*}{}{}
+
+
+
+
+\title{Spherical Packing Approach to Semi-Orthogonal User Selection}
+\author{J.E. Clarke, Dr. S.D. Blostein | Queen's University}
+\date{Fall, 2018}
+
+\begin{document}
+	\maketitle
+	\newpage
+    \section{Spherical packing approach}
+        \input{sec1/introduction}
+        \input{sec1/channel_vectors}
+    \section{Projecting vectors to points on spherical surface}
+        \input{sec2/chan_norm_projections}
+    \section{Semi-orthogonality of points on spherical surface}
+        \input{sec3/spherical_caps}
+    \section{Sum of dependent random indicator variables}
+    \section{Semi-orthogonal group existence probability}
+
+    \newpage
+
+	%\section{Appendices}
+	    %\subsection{Notes on Gamma-distributed variables}
+	    %    \input{app/gamma_dist.tex}
+    \newpage	
+ 	\begingroup
+ 		\renewcommand{\section}[2]{}%
+ 		\bibliographystyle{IEEEtran}
+ 		\bibliography{references}
+ 	\endgroup
+\end{document}
