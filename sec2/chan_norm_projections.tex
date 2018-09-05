@@ -1,10 +1,10 @@
-In order to formulate the problem as a sphere packing problem, channel vectors are assumed to be on the surface of a 2N-dimensional hyper-sphere. That is, the norms of each channel vector are assumed to be the same. This is evident from the definition of a hyper-sphere in $N-1$ dimensions:
+In order to formulate the problem as a sphere packing problem, channel vectors are assumed to be on the surface of a 2N-dimensional hyper-sphere. That is, the norms of each channel vector are assumed to be the same. This is evident from the definition of a hyper-sphere in $N$ dimensions:
 \begin{equation}\label{eq:sphere_def}
     \begin{aligned}
-        S^{N-1} = \lbrace \underline{h_i} \in \mathbb{R}^N \ : \ \Vert \underline{h_i} \Vert = \rho \rbrace
+        S^{N} = \lbrace \underline{h_i} \in \mathbb{R}^N \ : \ \Vert \underline{h_i} \Vert = \rho \rbrace
     \end{aligned}
 \end{equation}
-where $S^{N-1}$ is a $N-1$ hyper-sphere, $\underline{h}_i$ is a $N+1$-length real vector that is being projected from the origin of the sphere, $\mathcal{O}$, to its surface, and $\rho$ is thre radius of the sphere.
+where $S^{N}$ is a $N$ hyper-sphere, $\underline{h}_i$ is a $N$-length real vector that is being projected from the origin of the sphere, $\mathcal{O}$, to its surface, and $\rho$ is thre radius of the sphere.
 
 In the case of a wireless channel experiencing deterministic path loss and Rayleigh fading, this assumption is not practically realistic. If path loss is not exactly the same for each vector, the channel norms will differ between vectors (implying they would fall on the surface of different spheres, or some other arbitrary shape). Similarly, the stochastic nature of the channel vectors due to fading will have a similar result.
 

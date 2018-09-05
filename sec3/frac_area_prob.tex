@@ -1,0 +1,85 @@
+Following from the discussion of projecting vectors onto the spherical surface, and defining spherical caps associated with these points, we now extend these concepts the scenario of packing caps onto the surface of the sphere. In this scenario, we assume that vectors are randomly projected onto the surface of the sphere with a uniform density independently from each-other. We would like to know the probability that we can pack $l$ spherical caps of colatitude angle $\theta$ onto the surface of the sphere conditioned on the projection of such vectors onto the surface (as described in Section \ref{sec:chan_norm}). Channel vectors are chosen from a set $\mathsf{A},\ \vert \mathsf{A}\vert = l$ More formally:
+\begin{equation}\label{eq:p_perp_cdl}
+    \begin{aligned}
+        p_\perp &= Pr[\underset{i \in\mathsf{A}}{\cap} \mathcal{P}_j\not\in\mathcal{C}_i\ \forall j\neq i\in\mathsf{A}\ \vert\ \rho^-\leq  \Vert \underline{h_i} \Vert \leq \rho^+,\ \theta ]\\
+        &\geq Pr[\underset{i \in\mathsf{A}}{\cap} \mathcal{P}_j\not\in\mathcal{C}_i\ \forall j\neq i\in\mathsf{A}\ \vert\ \Vert \underline{h_i} \Vert = \rho^+,\ \theta ]
+    \end{aligned}
+\end{equation}
+The expression given in Eq. (\ref{eq:p_perp_cdl}) may alternatively be described as the probability that no vector in $\mathsf{A}$ lives in any other vector's spherical cap on the surface $\mathcal{S}^{2N}$, given the vectors live on this surface and a colatitude angle $\theta$. The inequality in $\ref{eq:p_perp_cdl}$ can be explained by the assumed channel norm length of $\rho^+$ for each vector. The channel norms are assumed to be larger than they actually are. Therefore, when the inner product is formed the vectors are assumed to be longer than they actually are. Therefore, their projections onto each-other will be larger than it should be. Thus, the orthogonality constraint is harder to meet.
+
+The probability $p_\perp$ can be expressed in terms of the fractional area of $\mathcal{S}^{2N}$. The probability that any two pair-wise vectors are orthogonal is given by fraction of the area remaining on $\mathcal{S}^{2N}$ after adding $l-1$ cap to the surface. Let $\Omega_{2N}(\rho^+,\theta)$ denote the area of a spherical cap of colatitude angle $\theta$. Therefore the probability that any two vectors are orthogonal on a pair-wise basis is:
+\begin{equation}\label{eq:delta_c}
+    \begin{aligned}
+        \delta_c(\theta,2N) = 2\frac{\Omega_{2N}(\rho^+,\theta)}{\Omega_{2N}(\rho^+,\pi)}
+    \end{aligned}
+\end{equation}
+Thus the area remaining on $\mathcal{S}^{2N}$ after considering one pair of vectors (ie. $\vert \mathsf{A} \vert = 2$) is:
+\begin{equation}\label{eq:p_perp_l2}
+    \begin{aligned}
+        p_{\perp,l=2} = 1-\delta_c(\theta,2N)
+    \end{aligned}
+\end{equation}
+
+We would like to consider groups of larger sizes (ie. $l> 2$). However, we have the difficulty of determining whether or not the the spherical caps overlap each other. It is important to realize that if the spherical caps $\mathcal{C}_i$ and $\mathcal{C}_j$ intersect each other, it is still possible the vectors are $\epsilon$-orthogonal. However, we know that if $\mathcal{C}_i\cap\mathcal{C}_j = \lbrace \emptyset \rbrace$ the vectors are $\epsilon$-orthogonal since there is no way $\mathcal{P}_j\in\mathcal{C}_i$: the cap $\mathcal{C}_j$ of non-zero radius prevents this case. In this way we can define a lower bound on $p_\perp$, by recalling each vector is projected on the sphere independent from all other vectors, and by assuming each cap is the same size and does not intersect any other cap, the union bound becomes:
+\begin{equation}\label{eq:p_perp}
+    \begin{aligned}
+        p_{\perp} \geq (1-\delta_c(\theta,2N))^{l-1}
+    \end{aligned}
+\end{equation}
+It is important to note that the union bound used in Eq. (\ref{eq:p_perp}) becomes overly pessimistic as the surface of the sphere fills up with caps. The bound does not allow for any caps to intersect at all. However, in reality, it is alright for caps to intersect each other so long as the intersection is not so large that $\mathcal{P}_j\in\mathcal{C}_i$. Allowing some intersection between caps makes packing the sphere much easier as the surface fills up. Therefore for small $N$, large $l$, and/or large $\theta$ the bound in Eq. (\ref{eq:p_perp}) is not expected to be tight.
+
+It has been shown in \cite{Li2011} that the $\delta_c$ function can be realized in terms of an incomplete regularized beta function. Let $\text{I}_z(a,b)$ be the incomplete regularized Beta function. The Beta function is given by the integral:
+\begin{equation}\label{eq:beta}
+    \begin{aligned}
+        \text{B}(a,b) = \int_0^1 t^{b-1}(1-t)^{a-1}dt; \ a>0,\ b>0
+    \end{aligned}
+\end{equation}
+
+Similarly, the incomplete Beta function is given by:
+\begin{equation}\label{eq:beta_inc}
+    \begin{aligned}
+        \text{B}_z(a,b) = \int_0^z t^{b-1}(1-t)^{a-1}dt; \ a>0,\ b>0,\ z>0
+    \end{aligned}
+\end{equation}
+or alternatively through the integral:
+\begin{equation}\label{eq:beta_inc_sin}
+    \begin{aligned}
+        \text{B}_{\sin^2\theta}(\frac{N+1}{2},\frac{1}{2}) = 2\int_0^\theta \sin^N (\phi)\ d\phi; \ a>0,\ b>0,\ \theta>0
+    \end{aligned}
+\end{equation}
+
+Finally the incomplete regularized function is given by:
+\begin{equation}\label{eq:beta_inc_reg}
+    \begin{aligned}
+        \text{I}_z(a,b) = \frac{\text{B}_z(a,b)}{\text{B}(a,b)}
+    \end{aligned}
+\end{equation}
+
+We will also make use of the expression for the surface area of an entire hyper-sphere in $N$ dimensions in terms of the Gamma function:
+\begin{equation}\label{eq:omega_gamma}
+    \begin{aligned}
+        \Omega_N(\rho^+,\pi) = \frac{2\pi^{N/2}}{\Gamma(N/2)}(\rho^+)^{N-1}
+    \end{aligned}
+\end{equation}
+
+As is illustrated by Li in \cite{Li2011}, the area of a spherical cap in $N$ dimensions can be calculated by integrating the surface of a sphere in $N-1$ dimensions along the arc of a great circle with radius $\rho^+\sin\phi$. Where the arc element along the great circle is given by $\rho^+d\phi$. This integral can be expressed in terms of the Beta function given above.
+\begin{equation}\label{eq:cap_integral}
+    \begin{aligned}
+        \Omega_N(\rho^+,\theta) &= \int_0^\theta \Omega_{N-1}(\rho^+\sin\phi,\pi)\ \rho^+d\phi\\
+        &= \frac{2\pi^{N-1/2}}{\Gamma(N-1/2)}(\rho^+)^{N-1}  \int_0^\theta \sin^{N-2}(\phi)d\phi\\
+        &= \frac{1}{2} \Omega_N(\rho^+,\pi)\  \text{I}_{\sin^2(\theta)}\bigg(\frac{N-1}{2},\frac{1}{2}\bigg)
+    \end{aligned}
+\end{equation}
+Therefore, comparing the expressions in Eqs. (\ref{eq:cap_integral}), (\ref{eq:delta_c}), we arrive at the following expression for $\delta_c$ in terms of the incomplete regularized Beta function:
+\begin{equation}\label{eq:delta_c_beta}
+    \begin{aligned}
+        \delta_c(\theta,2N) = \text{I}_{\sin^2(\theta)}\bigg(\frac{2N-1}{2},\frac{1}{2}\bigg)
+    \end{aligned}
+\end{equation}
+
+Thus, the bound on $p_\perp$ from Eq. (\ref{eq:p_perp}) can be expressed in terms of $\text{I}_{\sin^2(\theta)}$:
+\begin{equation}\label{eq:p_perp_beta}
+    \begin{aligned}
+        p_{\perp} \geq \bigg(1-\text{I}_{\sin^2(\theta)}\bigg(\frac{2N-1}{2},\frac{1}{2}\bigg)\bigg)^{l-1}
+    \end{aligned}
+\end{equation}

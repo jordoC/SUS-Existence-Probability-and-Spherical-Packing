@@ -1,7 +1,33 @@
-Orthogonality between pairs of vectors can be interpreted geometrically on the spherical surface in terms of spherical caps. A spherical cap is formed on the surface of the hyper-sphere of radius $\rho^+$ by by first extending the channel vector $\underline{h_i}$ onto the spherical surface as described in Section \ref{sec:chan_norm}. Then a cone, with its apex at $\mathcal{O}$, with half angle $\theta$, centered along the axis of $\underline{h_i}$ is intersected with the spherical surface. This intersection defines a spherical cap. $\mathcal{C}_i$. This process is illustrated in Fig. \ref{fig:spherical_cap}. 
+Orthogonality between pairs of vectors can be interpreted geometrically on the surface of a $2N$-dimensional hyper-sphere, given by $\mathcal{S}^{2N}$,  in terms of spherical caps. A spherical cap is formed on the surface of the hyper-sphere of radius $\rho^+$ by by first extending the channel vector $\underline{h_i}$ onto the spherical surface as described in Section \ref{sec:chan_norm}. When $\underline{h_i}$ is extended to the spherical surface, it defines a point $\mathcal{P}_i$ that lives on the surface of the sphere. Then a cone, with its apex at $\mathcal{O}$, with half angle $\theta$, centered along the axis of $\underline{h_i}$ is intersected with the spherical surface. This intersection defines a spherical cap, $\mathcal{C}_i$. This process is illustrated in Fig. \ref{fig:spherical_cap}. 
 
-considering a spherical surface with two vectors touching the surface of the sphere at arbitrary points on the sphere. A measure of orthogonality between these vectors can easily be calculated by forming the inner product between these vectors. Alternatively we could form a cone for each vector. The apex of each cone is the origin of the sphere, $\mathcal{O}$. The half angle of each cone is given by $\theta$.
+Spherical caps can be used to describe the the degree of orthogonality between a given vector $\underline{h_i}$ and an arbitrary vector $\underline{h_j}$ by viewing $\mathcal{C}_i$ as a `keep-out zone' $\forall \  \mathcal{P}_j,\ j\neq i \ \in \mathcal{S}^{2N}$. More formally:
+\begin{equation}\label{eq:cap_orth}
+    \begin{aligned}
+    \mathcal{P}_j \not\in \mathcal{C}_i\ \forall j\neq i \in \mathcal{S}^{2N}
+    \end{aligned}
+\end{equation}
+It is important to realize that $\mathcal{C}_i$ is a function of $\theta \in [0,\frac{\pi}{2}]$. That is, $\theta$ is a parameter that describes the degree of orthogonality between vectors: as $\theta \rightarrow \frac{\pi}{2}$ vectors that comply with Eq. (\ref{eq:cap_orth}) are increasingly orthogonal with $\underline{h_i}$.
 
+We can relate the spherical cap interpretation of orthogonality to inner products between vectors on a pair-wise basis. A geometric interpretation is shown in Fig. \ref{fig:cap_triangle}. In this figure, we introduce $\epsilon$, which is related to $\rho^+$, $\theta$:
+\begin{equation}\label{eq:epsilon}
+    \begin{aligned}
+    \epsilon = \rho^+\cos{\theta}
+    \end{aligned}
+\end{equation}
+We form the unit vector along $\underline{h_i}$:
+\begin{equation}\label{eq:unit_vec}
+    \begin{aligned}
+    \Hat{\underline{h_i}} = \frac{\underline{h_i}}{\rho^+}
+    \end{aligned}
+\end{equation}
+Thus we can form the inner product between $\Hat{\underline{h_i}}$ and $\Hat{\underline{h_j}}$:
+\begin{equation}\label{eq:inner_prod}
+    \begin{aligned}
+    <\Hat{\underline{h_i}},\Hat{\underline{h_j}}> &= \vert \Hat{\underline{h_j}}^H\Hat{\underline{h_i}} \vert\\
+    &\leq \frac{\epsilon}{\rho^+}
+    \end{aligned}
+\end{equation}
+The scenario shown in Fig. \ref{fig:cap_triangle} is the case where $\underline{h_j}$ is as close to living in $\mathcal{C}_i$ as possible without doing so. Namely, it shows the case of the equality shown in Eq. (\ref{eq:inner_prod}). Furthermore, the inequality in Eq. (\ref{eq:inner_prod}) does not hold if $\mathcal{P}_j\in \mathcal{C}_i$.
 \begin{figure}
 \centering
     \begin{tikzpicture}%[font = \sansmath]
@@ -26,7 +52,7 @@ considering a spherical surface with two vectors touching the surface of the sph
             \path [name intersections = {of = ellipse and horizontal}];
         
             %% radius to base of cone in ball
-            %\draw[fill = gray!50, gray!50] (intersection-1) -- (0,0)
+            %\draw[fill = gray!50, gray!50] (intersectioN) -- (0,0)
             %  -- (intersection-2) -- cycle;
             %% base of cone in ball
             %\draw[fill = gray!30, densely dashed] (0,\z) ellipse ({\rx} and %{\ry});
@@ -72,9 +98,95 @@ considering a spherical surface with two vectors touching the surface of the sph
         \draw[densely dashed] (O) -- (0,2);
         %label channel vector
         \draw (1.2,2.2) -- (0,1.72) node at (1.37,2.2) {$\underline{h_i}$};
+        % label of ball center point
+        \filldraw (0,2) circle (1pt) node[above] {$\mathcal{P}_i$};
         \end{scope}
     \end{tikzpicture}
     
     \caption{Surface of hyper-sphere in 2$N$ dimensions. A spherical cap, $\mathcal{C}_i$ is shown (shaded in red). $\mathcal{C}_i$ is formed by projecting the channel vector, $\underline{h_i}$, onto the spherical surface. A colatitude angle of $\theta$ and radius of $\rho^+$ are assumed in forming $\mathcal{C}_i$. Alternatively, $\mathcal{C}_i$ can also be interpreted as the cap formed by intersecting a cone of half-angle $\theta$ with the spherical surface.}
     \label{fig:spherical_cap}
+\end{figure}
+
+\begin{figure}
+\centering
+    \begin{tikzpicture}%[font = \sansmath]
+        %define origin, 1-height of cone, radius
+        \coordinate (O) at (0,0);
+        \def\r{2}
+        \def\H{.6}
+        
+        \begin{scope}
+        % ball background color
+
+        \begin{scope}
+            \def\rx{0.71}% horizontal radius of the ellipse
+            \def\ry{0.15}% vertical radius of the ellipse
+            \def\z{0.725}% distance from center of ellipse to origin
+        
+            \path [name path = ellipse]    (0,\z) ellipse ({\rx} and {\ry});
+            \path [name path = horizontal] (-\rx,\z-\ry*\ry/\z)
+                                        -- (\rx,\z-\ry*\ry/\z);
+            \path [name intersections = {of = ellipse and horizontal}];
+        
+            % radius to base of cone in ball
+            %\draw[fill = gray!50, gray!50] (intersectioN) -- (0,0) -- (intersection-2) -- cycle;
+            % base of cone in ball
+            %\draw[fill = gray!30, densely dashed] (0,\z) ellipse ({\rx} and %{\ry});
+        \end{scope}
+        
+        % label of cone
+        %\draw (0.25,0.4) -- (0.9,0.1) node at (1.05,0.0) {$q$};
+
+        % label of ball center point
+        \filldraw (O) circle (1pt) node[below] {$\mathcal{O}$};
+        
+        % radius
+        \draw[densely dashed] (O) to [edge label = $\rho^+$] (-1.4,1.32);
+        %\draw[densely dashed] (O) -- (1.4,1.32);
+        %label colatitude angle
+        \draw[densely dashed] (-0.5,0.5) arc [start angle = 135, end angle = 90, x radius = 7mm, y radius = 7mm];
+        \draw (-2.2, 0.8) -- (-0.4, 0.6) node at (-2.35,0.8) {$\theta$};
+        
+       
+        %\draw[red, densely dashed] (-1.36,1.46) arc [start angle = 170, end angle = 10,
+        x radius = 13.8mm, y radius = 3.6mm];
+        %\draw[red] (-1.29,1.52) arc [start angle=-200, end angle = 20,
+        x radius = 13.75mm, y radius = 3.15mm];
+        
+        % label of cut of ball surface
+        \draw (-1.2,2.2) -- (-0.53,1.83) node at (-1.37,2.37) {$\mathcal{C}_i$};
+        
+        %shade the spherical cap
+        \begin{scope}
+            %clip the shading outside the ball
+            \clip ({\r*cos(-90)},{\r*sin(-90)}) arc [start angle=-90,end angle=270,radius=\r];
+            %draw the disk    
+            \fill[red!20] (0,{\r-\H}) circle [x radius={sqrt(\r^2-(\r-\H)^2)}, y radius={0.2*sqrt(\r^2-(\r-\H)^2)}];
+            %shade the disk
+            \shade[top color=red!70!gray,bottom color=red!10!blue!10!,opacity=0.6]  ({\r},{1.1*\r}) rectangle ++({-2*\r},{-0.1*\r-\H});
+        \end{scope}
+    
+        %draw channel vector
+        \draw[densely dashed] (O) -- (0,2);
+        
+        %epsilon label
+        \draw node at (0.2,0.7) {$\epsilon$};
+        
+        %label channel vector
+        \draw (1.2,2.2) -- (0,1.72) node at (1.37,2.2) {$\underline{h_i}$};
+         %label channel vector
+        \draw (-2.2, 1.3) -- (-0.85,0.85) node at (-2.4,1.3) {$\underline{h_j}$};
+        
+        % label of ball center point
+        \filldraw (0,2) circle (1pt) node[above] {$\mathcal{P}_i$};
+        
+        % label of point from second vector
+        \filldraw (-1.4,1.32) circle (1pt) node[above] {$\mathcal{P}_j$};
+        %draw top part of right triangle
+        \draw[densely dashed] (-1.4,1.32) -- (0,1.32);
+        \end{scope}
+    \end{tikzpicture}
+    
+    \caption{Relationship between spherical cap and inner product of vectors $\underline{h_i},\ \underline{h_j}$}. $\mathcal{P}_j$ lives outside of $\mathcal{C}_i$, however, it is as close as it can be to the cap without living inside it.
+    \label{fig:cap_triangle}
 \end{figure}
