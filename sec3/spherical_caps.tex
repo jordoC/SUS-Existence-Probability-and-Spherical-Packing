@@ -6,28 +6,28 @@ Spherical caps can be used to describe the the degree of orthogonality between a
     \mathcal{P}_j \not\in \mathcal{C}_i\ \forall j\neq i \in \mathcal{S}^{2N}
     \end{aligned}
 \end{equation}
-It is important to realize that $\mathcal{C}_i$ is a function of $\theta \in [0,\frac{\pi}{2}]$. That is, $\theta$ is a parameter that describes the degree of orthogonality between vectors: as $\theta \rightarrow \frac{\pi}{2}$ vectors that comply with Eq. (\ref{eq:cap_orth}) are increasingly orthogonal with $\underline{h_i}$.
+It is important to realize that $\mathcal{C}_i$ is a function of $\theta \in [0,\frac{\pi}{2}]$. That is, $\theta$ is a parameter that describes the degree of orthogonality between vectors: as $\theta \rightarrow \frac{\pi}{2}$ vectors that comply with Eq. (\ref{eq:cap_orth}) are increasingly orthogonal to $\underline{h_i}$. When the condition given in Eq. (\ref{eq:cap_orth}) is satisfied, $\underline{h_i}$ and $\underline{h_j}$ are said to  be $\epsilon$-orthogonal. That is, these two vectors are $\epsilon$-orthogonal to each other to a minimum degree given by the parameter, $\epsilon$.
 
 We can relate the spherical cap interpretation of orthogonality to inner products between vectors on a pair-wise basis. A geometric interpretation is shown in Fig. \ref{fig:cap_triangle}. In this figure, we introduce $\epsilon$, which is related to $\rho^+$, $\theta$:
 \begin{equation}\label{eq:epsilon}
     \begin{aligned}
-    \epsilon = \rho^+\cos{\theta}
+    \epsilon = \rho^+\cos{\theta} \ \ .
     \end{aligned}
 \end{equation}
 We form the unit vector along $\underline{h_i}$:
 \begin{equation}\label{eq:unit_vec}
     \begin{aligned}
-    \Hat{\underline{h_i}} = \frac{\underline{h_i}}{\rho^+}
+    \Hat{\underline{h_i}} = \frac{\underline{h_i}}{\sqrt{\rho^+}} \ \ .
     \end{aligned}
 \end{equation}
 Thus we can form the inner product between $\Hat{\underline{h_i}}$ and $\Hat{\underline{h_j}}$:
 \begin{equation}\label{eq:inner_prod}
     \begin{aligned}
     <\Hat{\underline{h_i}},\Hat{\underline{h_j}}> &= \vert \Hat{\underline{h_j}}^H\Hat{\underline{h_i}} \vert\\
-    &\leq \frac{\epsilon}{\rho^+}
+    &\leq \frac{\epsilon}{\rho^+} \ \ .
     \end{aligned}
 \end{equation}
-The scenario shown in Fig. \ref{fig:cap_triangle} is the case where $\underline{h_j}$ is as close to living in $\mathcal{C}_i$ as possible without doing so. Namely, it shows the case of the equality shown in Eq. (\ref{eq:inner_prod}). Furthermore, the inequality in Eq. (\ref{eq:inner_prod}) does not hold if $\mathcal{P}_j\in \mathcal{C}_i$.
+The scenario shown in Fig. \ref{fig:cap_triangle} is the case where $\underline{h_j}$ is as close to living entirely in $\mathcal{C}_i$ without doing so. Namely, it shows the case of the equality shown in Eq. (\ref{eq:inner_prod}) where $\mathcal{P}_j$ lives on the circular boundary of $\mathcal{C}_i$ (ie. $\mathcal{P}_j$ may live partially in $\mathcal{C}_i$, but not entirely.). Furthermore, the inequality in Eq. (\ref{eq:inner_prod}) does not hold if $\mathcal{P}_j\in \mathcal{C}_i$.
 \begin{figure}
 \centering
     \begin{tikzpicture}%[font = \sansmath]

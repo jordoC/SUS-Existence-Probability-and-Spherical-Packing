@@ -3,51 +3,51 @@ The graph approach taken will be as follows. Firstly, a graph will be generated 
 Let us define $H$ as the channel matrix whose columns are the channel vectors corresponding to the set of candidate vectors $\mathsf{C}$. Therefore, $H$ is a $N \times m$ matrix. Next let us define the $m \times m$ square matrix given by the product of $H$ with its conjugate transpose:
  \begin{equation}\label{eq:w_matrix}
     \begin{aligned}
-        W = H^HH
+        W = H^HH \ \ .
     \end{aligned}
 \end{equation}
 At this time, take a moment to note what the elements of $W$ represent. The diagonal elements of $W$ are the L2 norms of the channel. The off-diagonal elements are the inner products between the various channel vectors. Therefore, the elements of $W$ may be compared to the constraints given in Eq. (\ref{eq:S_e}). More specifically, the diagonal elements may be compared to the channel norm requirements in terms of $\rho^-,\ \rho^+$, and the off-diagonal elements may be compared to the orthogonality constraints in terms of $\epsilon$ or $\theta$.
 
 Motivated by these constraints, we define the transforms $\mathfrak{T}_\rho$ and $\mathfrak{T}_\theta$ that operate on square matrices such as $W$. Let $w_{ii}$ be the $i^{the}$ diagonal element of $W$, and let $w_{ij}$ be the element of $W$ at the $i^{th}$ row, $j^{th}$ column.
 
-The transform, $\mathfrak{T}_\rho(W;\ \rho^-, \ \rho^+)$, transforms $W$ into a new $\Hat{m}\times \Hat{m}\ : \ \Hat{m}\leq m$ square matrix, $\Hat{W}$, by appending rows and columns of $W$ depending on the corresponding diagonal element $w_{ii}$ that belong to the $i^{th}$ row and column. If $\rho^- \leq w_{ii}\leq \rho^+$ holds, then the $i^{th}$ row and column of $W$ are appended to the transformed matrix $\Hat{W}$. However, if this condition does not hold, then the $i^{th}$ row and column are not appended to $\Hat{W}$: instead they are appended to the set $\mathsf{P}_\rho$. That is, $\mathsf{P}_\rho$ is the set of all vectors that do not meet channel norm requirements. Once all the diagonal elements in $W$ have been considered, all the diagonal elements in $\Hat{W}$ are set to 1.
+The transform, $\mathfrak{T}_\rho(W;\ \rho^-, \ \rho^+)$, transforms $W$ into a new $\Hat{m}\times \Hat{m}\ : \ \Hat{m}\leq m$ square matrix, $\Hat{W}$, by appending rows and columns of $W$ to $\Hat{W}$ depending on the corresponding diagonal element $w_{ii}$ that belong to the $i^{th}$ row and column. If $\rho^- \leq w_{ii}\leq \rho^+$ holds, then the $i^{th}$ row and column of $W$ are appended to the transformed matrix $\Hat{W}$. However, if this condition does not hold, then the $i^{th}$ row and column are not appended to $\Hat{W}$: instead they are appended to the set $\mathsf{P}_\rho$. That is, $\mathsf{P}_\rho$ is the set of all vectors that do not meet channel norm requirements. Once all the diagonal elements in $W$ have been considered, all the diagonal elements in $\Hat{W}$ are set to 1.
 
-The transform $\mathfrak{T}(\Hat{W};\ \theta)$, operates on the off-diagonal elements of $\Hat{W}$. The result of the transform is a $\Hat{m}\times\Hat{m}$ square matrix, $\Tilde{W}$, whose elements take binary values 0 or 1. While $\mathfrak{T}_\rho$ removed rows and colums associated with diagonal elements, $\mathfrak{T}_\theta$ quantizes off-diagonal elements of $\Hat{W}$ to binary values of 0 or 1. If $\vert \Hat{w}_{ij} \vert <\cos\theta$, then $\Hat{w}_{ij}$ is set to 1; otherwise, it is set to 0. Note that $\Tilde{W}$ is a symmetric matrix by virtue of the hermitian operation and transforms used to generate the matrix.
+The transform $\mathfrak{T}(\Hat{W};\ \theta)$, operates on the off-diagonal elements of $\Hat{W}$. The result of the transform is a $\Hat{m}\times\Hat{m}$ square matrix, $\Tilde{W}$, whose elements take binary values 0 or 1. While $\mathfrak{T}_\rho$ appended rows and colums associated with diagonal elements, $\mathfrak{T}_\theta$ quantizes off-diagonal elements of $\Hat{W}$ to binary values of 0 or 1. If $\vert \Hat{w}_{ij} \vert <\cos\theta$, then $\Hat{w}_{ij}$ is set to 1; otherwise, it is set to 0. Note that $\Tilde{W}$ is a symmetric matrix by virtue of the Hermitian operation and transforms used to generate the matrix.
 
-We now interpret the binary elements as a description of the graph $\Gamma(\Tilde{W},\mathsf{P}_\rho$ . We begin by interpreting the elements along the diagonal of $\Tilde{W}$ as vertices of $\Gamma$. Next, we form an edge between the $i^{th}$ vertex associated with $\Tilde{w_{ii}}$ and the $j^{th}$ vertex associated with $\Tilde{w_{ij}}$ if the value of $\Tilde{w}_{ij}=1$. Edges are formed throughout the graph by repeating this process for all the diagonal elements of $\Tilde{W}$, making comparisons to all the elements that belong to $\Tilde{w}_{ii}$'s row. Finally a vertex is added to the graph corresponding to each element in the set $\mathsf{P}_\rho$. There are no edges to the vertices associated with $\mathsf{P}_\rho$.
+We now interpret the binary elements as a description of the graph $\Lambda(\Tilde{W},\mathsf{P}_\rho$) . We begin by interpreting the elements along the diagonal of $\Tilde{W}$ as vertices of $\Lambda$. Next, we form an edge between the $i^{th}$ vertex associated with $\Tilde{w_{ii}}$ and the $j^{th}$ vertex associated with $\Tilde{w_{ij}}$ if the value of $\Tilde{w}_{ij}=1$. Edges are formed throughout the graph by repeating this process for all the diagonal elements of $\Tilde{W}$, making comparisons to all the elements that belong to $\Tilde{w}_{ii}$'s row. Finally a vertex is added to the graph corresponding to each element in the set $\mathsf{P}_\rho$. There are no edges to the vertices associated with $\mathsf{P}_\rho$.
 
-Let us take a moment to draw connections between the graph $\Gamma$ and the expression given in Eq. ($\ref{eq:S_e}$). The number of vertices in the graph is the same as the cardinality of the set of candidate vectors $\vert \mathsf{C}\vert = m$. The collection of sets $\mathscr{S}_\epsilon$ in Eq. (\ref{eq:S_e}) can be represented in $\Gamma$ by forming $\mathscr{A}$ which is the collection of $\binom{m}{l}$ sets (or $l$-tuples), $\mathsf{A}$, on the vertices of $\Gamma$, regardless of whether or not edges exist, then testing against channel norm and orthogonality constraints in terms of indicator variables. The graph interpretation can be related to $1_{\mathsf{A}}$ in terms connectivity between vertices. If the $l$-tuple of vertices, $\mathsf{A}\subset\Gamma$ is fully connected (ie. edges exist between vertices in the tuple such that one can travel to any vertex), then   $1_{\mathsf{A}} = 1$, otherwise $1_{\mathsf{A}} = 0$.
+Let us take a moment to draw connections between the graph $\Lambda$ and the expression given in Eq. ($\ref{eq:S_e}$). The number of vertices in the graph is the same as the cardinality of the set of candidate vectors $\vert \mathsf{C}\vert = m$. The collection of sets $\mathscr{S}_\epsilon$ in Eq. (\ref{eq:S_e}) can be represented in $\Lambda$ by forming $\mathscr{A}$ which is the collection of $\binom{m}{l}$ sets (or $l$-tuples), $\mathsf{A}$, on the vertices of $\Lambda$, regardless of whether or not edges exist, then testing against channel norm and orthogonality constraints in terms of indicator variables. The graph interpretation can be related to $1_{\mathsf{A}}$ in terms connectivity between vertices. If the $l$-tuple of vertices, $\mathsf{A}\subset\Lambda$ is fully connected (ie. edges exist between vertices in the tuple such that one can travel to any vertex), then   $1_{\mathsf{A}} = 1$, otherwise $1_{\mathsf{A}} = 0$. Moreover, $\mathscr{A}$ can also be interpreted as a graph. Each of the $l$-tuples $\mathsf{A}\in \mathscr{A}$ is a vertex. Vertices in $\mathscr{A}$ are connected with an edge if they share a common element between tuples.
 
-We can now relate this to the work done by Janson \cite{Janson2004} to quantify the expression in Eq. (\ref{eq:indicator_sum}) using the graph $\Gamma$. It is important to note before proceeding that $1_\mathsf{A}$ is a Bernoulli-distributed random variable, which takes value 1 with probability $p_\perp$. Further, a requirement of using the following expressions from $\cite{Janson2004}$ is that $1_\mathsf{A}$ and $1_\mathsf{B}$ are independent so long as there is no intersections between the sets $\mathsf{A}$ and $\mathsf{B}$. This may seem like a redundant statement; however, if the random variables upon which $1_\mathsf{A}$ and $1_\mathsf{B}$ are correlated, this statement does not hold. However, in our case, we assume independent Rayleigh fading. The random variables contained within each vector are iid, and the vectors themselves are independent. Therefore, we meet this requirement.
+We can now relate this to the work done by Janson \cite{Janson2004} to quantify the expression in Eq. (\ref{eq:indicator_sum}) using the graph $\Lambda$. It is important to note before proceeding that $1_\mathsf{A}$ is a Bernoulli-distributed random variable, which takes value 1 with probability $p_\perp$. Further, a requirement of using the following expressions from $\cite{Janson2004}$ is that $1_\mathsf{A}$ and $1_\mathsf{B}$ are independent so long as there is no intersections between the sets $\mathsf{A}$ and $\mathsf{B}$. This may seem like a redundant statement; however, if the random variables upon which $1_\mathsf{A}$ and $1_\mathsf{B}$ depend are correlated, this statement does not hold. However, in our case, we assume independent Rayleigh fading. The random variables contained within each vector are iid, and the vectors themselves are independent. Therefore, we meet this requirement.
 
 Two upper bounds are given on probabilities relevant to our application in \cite{Janson2004}. Firstly Theorem 2.1 gives:
 
  \begin{equation}\label{eq:pr_janson_thrm_2-1}
     \begin{aligned}
-        Pr[K_\epsilon^{(l)} \leq \text{E}\lbrace K_\epsilon^{(l)} \rbrace -t] \leq \exp\bigg(\frac{-2t^2}{\chi^*(\mathscr{A})\vert \mathscr{A}\vert}\bigg)
+        Pr[K_\epsilon^{(l)} \leq \text{E}\lbrace K_\epsilon^{(l)} \rbrace -t] \leq \exp\bigg(\frac{-2t^2}{\chi^*(\mathscr{A})\vert \mathscr{A}\vert}\bigg) \ \ ;
     \end{aligned}
 \end{equation}
-Secondly, Corollary 2.4 gives:
+secondly, Corollary 2.4 gives:
 \begin{equation}\label{eq:pr_janson_corollary_2-4}
     \begin{aligned}
-        Pr[K_\epsilon^{(l)} \leq \text{E}\lbrace K_\epsilon^{(l)} \rbrace -t] \leq \exp\bigg(\frac{-8t^2}{25\chi^*(\mathscr{A})p\vert \mathscr{A}\vert}\bigg)
+        Pr[K_\epsilon^{(l)} \leq \text{E}\lbrace K_\epsilon^{(l)} \rbrace -t] \leq \exp\bigg(\frac{-8t^2}{25\chi^*(\mathscr{A})p_\perp\vert \mathscr{A}\vert}\bigg) \ \ ,
     \end{aligned}
 \end{equation}
-where $p$ is the probability associated with $1_\mathsf{A}$ taking a value of 1. $\chi^*$ is the fractional chromatic number of the graph formed by the set of vertices and edges $\mathsf{A}\in\Gamma$.
+where $p_\perp$ is the probability associated with $1_\mathsf{A}$ taking a value of 1. $\chi^*(\mathscr{A})$ is the fractional chromatic number of $\mathscr{A}$ interpreted as a graph.
 
 In our case, we are particularly interested in the case $Pr[K_\epsilon^{(l)} = 0]$ as in Eq. (\ref{eq:p_epsilon_sum}). In order to arrive at this result we will manipulate the expressions given in Eqs. (\ref{eq:pr_janson_thrm_2-1}),(\ref{eq:pr_janson_corollary_2-4}). 
 
 Firstly, we notice that the sum of Bernoulli random variables will result in a binomial distribution for $K_\epsilon^{(l)}$. The mean of the binomial distribution, regardless of dependence in the sum, is given by:
 \begin{equation}\label{eq:binom_mean}
     \begin{aligned}
-        \text{E}\lbrace K_\epsilon^{(l)} \rbrace &= \vert \mathscr{A} \vert p
+        \text{E}\lbrace K_\epsilon^{(l)} \rbrace &= \vert \mathscr{A} \vert p_\perp \ \ .
         =\binom{m}{l}p
     \end{aligned}
 \end{equation}
-We also note that $p=p_\perp$. Additionally, it can be shown as in \cite{Janson2004} Example 4, so long as the conditions of independence hold as described above, $\chi^*(\mathscr{A})$ can be bounded:
+It can be shown as in \cite{Janson2004} Example 4, so long as the conditions of independence hold as described above, $\chi^*(\mathscr{A})$ can be bounded:
 \begin{equation}\label{eq:chi_bound}
     \begin{aligned}
-        \chi^*(\mathscr{A})\leq\chi^*(\Gamma)\leq \frac{ \binom{m}{l}}{\lfloor \frac{m}{l} \rfloor}
+        \chi^*(\mathscr{A})\leq\chi^*(\Lambda)\leq \frac{ \binom{m}{l}}{\lfloor \frac{m}{l} \rfloor} \ \ .
     \end{aligned}
 \end{equation}
 
@@ -56,7 +56,7 @@ Thus, following from Eq. (\ref{eq:pr_janson_thrm_2-1}):
     \begin{aligned}
         Pr[K_\epsilon^{(l)} \leq 0] &\leq \exp\bigg(\frac{-2p_\perp^2\binom{m}{l}^2}{\frac{\binom{m}{l}}{\lfloor \frac{m}{l}\rfloor}\binom{m}{l}}\bigg)\\
         &= \exp\bigg( -2p_\perp^2 \lfloor \frac{m}{l} \rfloor \bigg)\\
-        &\geq Pr[K_\epsilon^{(l)} = 0]
+        &\geq Pr[K_\epsilon^{(l)} = 0] \ \ .
     \end{aligned}
 \end{equation}
 
@@ -65,14 +65,14 @@ Similarly, following from Eq. (\ref{eq:pr_janson_corollary_2-4}):
     \begin{aligned}
         Pr[K_\epsilon^{(l)} \leq 0] &\leq \exp\bigg(\frac{-8p_\perp^2\binom{m}{l}^2}{25\frac{\binom{m}{l}}{\lfloor \frac{m}{l} \rfloor} p_\perp \binom{m}{l}} \bigg)\\
         &= \exp\bigg(\frac{-8p_\perp \lfloor \frac{m}{l} \rfloor}{25} \bigg)\\
-        &\geq Pr[K_\epsilon^{(l)} = 0]
+        &\geq Pr[K_\epsilon^{(l)} = 0] \ \ .
     \end{aligned}
 \end{equation}
 
 Finally to guarantee an upper bound on $ Pr[K_\epsilon^{(l)} = 0]$, we have:
 \begin{equation}\label{eq:pr_K_ub}
     \begin{aligned}
-        Pr[K_\epsilon^{(l)} = 0]&\leq \exp\bigg(-\text{max}\bigg\lbrace \frac{8p_\perp \lfloor \frac{m}{l} \rfloor}{25}, 2p_\perp^2 \lfloor \frac{m}{l} \rfloor\bigg\rbrace \bigg)
+        Pr[K_\epsilon^{(l)} = 0]&\leq \exp\bigg(-\text{max}\bigg\lbrace \frac{8p_\perp \lfloor \frac{m}{l} \rfloor}{25}, 2p_\perp^2 \lfloor \frac{m}{l} \rfloor\bigg\rbrace \bigg) \ \ .
     \end{aligned}
 \end{equation}
 
@@ -80,6 +80,8 @@ Therefore, following from Eqs. (\ref{eq:K_rho}),(\ref{eq:p_epsilon_sum}),(\ref{e
 
 \begin{equation}\label{eq:p_e_sum_exp}
     \begin{aligned}
-        p_{\epsilon,l,n} = \sum_{j=l}^n \binom{j}{l}p_s^l(1-p_s)^{(j-l)} (1-\exp\bigg(-\text{max}\bigg\lbrace \frac{8p_\perp \lfloor \frac{j}{l} \rfloor}{25}, 2p_\perp^2 \lfloor \frac{j}{l} \rfloor\bigg\rbrace \bigg))
+        p_{\epsilon,l,n} = \sum_{j=l}^n \binom{j}{l}p_s^l(1-p_s)^{(j-l)} (1-\exp\bigg(-\text{max}\bigg\lbrace \frac{8p_\perp \lfloor \frac{j}{l} \rfloor}{25}, 2p_\perp^2 \lfloor \frac{j}{l} \rfloor\bigg\rbrace \bigg)) \ \ .
     \end{aligned}
 \end{equation}
+
+This expression is significant in that it gives us a function that describes the probability of finding a $\epsilon$-orthogonal group of users in terms of several key parameters including the number of users in the group, the number of candidate users considered for addition to the group, the degree of orthogonality between vectors associated with users in the group, and the bound on norms of vectors associated with channels in the group.

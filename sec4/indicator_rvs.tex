@@ -1,57 +1,56 @@
-In Section \ref{sec:chan_norm} we described a method of approximately projecting channel vectors onto a spherical surface. In Section \ref{sec:spherical_caps} we used this the event of this projection as a condition for developing a probability that a set of $l$ vectors, $\mathsf{A}$, is $\epsilon$-orthogonal. In this section we set out to extend these results further by considering a larger set of candidate vectors, $\mathsf{C} \ :\ \vert \mathsf{C} \vert = m >l$. This result is particularly useful because it allows us to consider the probability that we can find a group of $l$ vectors that are $\epsilon$-orthogonal as a function of the number of candidates we consider, $n$. One would expect that as more candidates are considered for addition to an $\epsilon$-orthogonal group of size $l$, the probability that such a group meets the constraints and attains minimum size $l$ increases with $n$. However, as more candidates are considered, the complexity associated with forming the $\epsilon$-orthogonal group also increases. 
+In Section \ref{sec:chan_norm} we described a method of approximately projecting channel vectors onto a spherical surface. In Section \ref{sec:spherical_caps} we used the event of this projection as a condition for developing a probability that a set of $l$ vectors, $\mathsf{A}$, is $\epsilon$-orthogonal. In this section we set out to extend these results further by considering a larger set of candidate vectors, $\mathsf{C} \ :\ \vert \mathsf{C} \vert = m >l$. This result is particularly useful because it allows us to consider the probability that we can find a group of $l$ vectors that are $\epsilon$-orthogonal as a function of the number of candidates we consider, $n$. One would expect that as more candidates are considered for addition to an $\epsilon$-orthogonal group of size $l$, the probability that such a group meets the constraints and attains minimum size $l$ increases with $n$. However, as more candidates are considered, the complexity associated with forming the $\epsilon$-orthogonal group also increases. In such a way we can trade off complexity for performance.
 
-We can describe the collection of $\epsilon$-orthogonal sets using the criteria developed in the previous sections. Let $\mathscr{S}_\epsilon$ be a collection of $\epsilon$-orthogonal sets. $\mathscr{S}_\epsilon$ is formed by testing all subsets of the set of candidate vectors, $\mathsf{A}\subset\mathsf{C}\ : \ \vert \mathsf{A} \vert = l$, against the channel norm and orthogonality constraints previously developed. Thus, $\mathscr{S}_\epsilon$ is a collection of $l$-length sets. The vectors contained within each of these $l$-length sets are mutually $\epsilon$-orthogonal. In the case that $\mathscr{S}_\epsilon = \lbrace \emptyset \rbrace$, no $\epsilon$-orthogonal sets of cardinality $l$ exist in the set of candidate vectors $\mathsf{C}$. This can be expressed more formally as:
+We can describe the collection of $\epsilon$-orthogonal sets (user groups) using the criteria developed in the previous sections. Let $\mathscr{S}_\epsilon$ be a collection of $\epsilon$-orthogonal sets. $\mathscr{S}_\epsilon$ is formed by testing all subsets of the set of candidate vectors, $\mathsf{A}\subset\mathsf{C}\ : \ \vert \mathsf{A} \vert = l$, against the channel norm and orthogonality constraints previously developed. Thus, $\mathscr{S}_\epsilon$ is a collection of $l$-length sets. The vectors contained within each of these $l$-length sets are mutually $\epsilon$-orthogonal. In the case that $\mathscr{S}_\epsilon = \lbrace \emptyset \rbrace$, no $\epsilon$-orthogonal sets of cardinality $l$ exist in the set of candidate vectors $\mathsf{C}$. This can be expressed more formally as:
  \begin{equation}\label{eq:S_e}
     \begin{aligned}
-        \mathscr{S}_\epsilon = \lbrace \mathsf{A}\ \big|\ | \underline{h_j}^H\underline{h_i} |\ <\ \epsilon \ \text{;} \ \rho^-<\Vert \underline{h_i} \Vert^2 < \rho^+\ \forall \ i \neq j \in \mathsf{A} \rbrace \ \forall \mathsf{A}\subset \mathsf{C}
+        \mathscr{S}_\epsilon = \lbrace \mathsf{A}\ \big|\ | \underline{h_j}^H\underline{h_i} |\ <\ \epsilon \ \text{;} \ \rho^-<\Vert \underline{h_i} \Vert^2 < \rho^+\ \forall \ i \neq j \in \mathsf{A} \rbrace \ \forall \mathsf{A}\subset \mathsf{C} \ \ .
     \end{aligned}
 \end{equation}
 
-The purpose of this discussion is to provide an expression for the probability $Pr[\mathscr{S}_\epsilon \neq \lbrace \emptyset \rbrace]$. We adopt the following notation to describe this probability.
+The purpose of this discussion is to provide an expression for the probability that at least one such set exists, that is, $Pr[\mathscr{S}_\epsilon \neq \lbrace \emptyset \rbrace]$. We adopt the following notation to describe this probability.
  \begin{equation}\label{eq:p_epsilon}
     \begin{aligned}
         p_\epsilon = Pr[\mathscr{S}_\epsilon \neq \lbrace \emptyset \rbrace]
     \end{aligned}
 \end{equation}
-More specifically, we want to describe $p_\epsilon$ as a function of $l,\ n,\ \theta$. In order to work up to this result, let us first consider the case that $n=l$. In this case, there is only one non-null subset of $\mathsf{C}$, that is, $\mathsf{C}$ itself. Therefore, the existence probability of $\epsilon$-orthogonal set can be stated in terms of Eqs. (\ref{eq:p_s}), (\ref{eq:p_perp_cdl} or \ref{eq:p_perp_beta}) by recalling that $p_s$ is independent of $p_\perp$:
+More specifically, we want to describe $p_\epsilon$ as a function of $l,\ n,\ \theta$. In order to work up to this result, let us first consider the case that $n=l$. In this case, there is only one non-null subset of $\mathsf{C}$, namely $\mathsf{C}$ itself. Therefore, the existence probability of $\epsilon$-orthogonal set can be stated in terms of Eqs. (\ref{eq:p_s}), (\ref{eq:p_perp_cdl} or \ref{eq:p_perp_beta}) by recalling that $p_s$ is independent of $p_\perp$:
  \begin{equation}\label{eq:p_epsilon_l}
     \begin{aligned}
-        p_{\epsilon,l=n} = p_\perp p_s^l
+        p_{\epsilon,l=n} = p_\perp p_s^l \ \ .
     \end{aligned}
 \end{equation}
 
 However, in the case that $n>l$, we must now consider more than one subset of $\mathsf{C}$. In order to do so, we first realize that since the vectors are independent, the probability that $K_{\rho^+}$ vectors will fall in the spherical shell defined by $\rho^-,\ \rho^+$ is given by a binomial distribution.
  \begin{equation}\label{eq:K_rho}
     \begin{aligned}
-        Pr[K_{\rho^+} = l] = \binom{n}{l}p_s^l(1-p_s)^{(n-l)} 
+        Pr[K_{\rho^+} = l] = \binom{n}{l}p_s^l(1-p_s)^{(n-l)}
     \end{aligned}
 \end{equation}
 
-Next, we introduce the random indicator variable which returns a binary value indicating whether or not $\mathsf{A}\in \mathscr{S}_\epsilon$:
+Next, we introduce the indicator random variable which returns a binary value indicating whether or not $\mathsf{A}\in \mathscr{S}_\epsilon$:
  \begin{equation}\label{eq:orth_indicator}
     \begin{aligned}
         \textbf{1}_{\mathsf{A}} = 
         \begin{cases}
             1,& \text{if } \mathsf{A} \in \mathscr{S}_\epsilon\\
             0,              & \text{otherwise}
-        \end{cases}
+        \end{cases} \ \ .
     \end{aligned}
 \end{equation}
 
 The number of $\epsilon$-orthogonal sets in the collection $\mathscr{S}_\epsilon$ may be expressed in terms of a sum of these indicator variables:
  \begin{equation}\label{eq:indicator_sum}
     \begin{aligned}
-        K_\epsilon^{(l)} = \sum_{\mathsf{A}\subset\mathsf{C}}1_{\mathsf{A}} \ : \ \vert \mathsf{A} \vert = l
+        K_\epsilon^{(l)} = \sum_{\mathsf{A}\subset\mathsf{C}}1_{\mathsf{A}} \ : \ \vert \mathsf{A} \vert = l \ \ .
     \end{aligned}
 \end{equation}
 
-We can now expand on the expression given in Eq. (\ref{eq:p_epsilon}) in terms of Eqs. (\ref{eq:indicator_sum}, \ref{eq:K_rho}). First we realize that we want the union of events corresponding to the existence of group sizes in the range $l\leq j \leq n$. We then form the probability of these events as the product of the probability associated with $j$ vectors existing in the shell (see Eq. (\ref{eq:K_rho})) and the probability that $K_\epsilon^{(l)} > 0$ conditioned on the existence of $j$ vectors in the shell.    ($\ref{eq:p_epsilon}$) is equivalent to $Pr[ K_\epsilon^{(l)} \neq 0]$.
+We can now expand on the expression given in Eq. (\ref{eq:p_epsilon}) in terms of Eqs. (\ref{eq:indicator_sum}, \ref{eq:K_rho}). First we realize that we want the union of events corresponding to the existence of group sizes in the range $l\leq j \leq n$. We then form the probability of these events as the product of the probability associated with $j$ vectors existing in the shell (see Eq. (\ref{eq:K_rho})) and the probability that $K_\epsilon^{(l)} > 0$ conditioned on the existence of $j$ vectors in the shell. Note Eq.   ($\ref{eq:p_epsilon}$) is equivalent to $Pr[ K_\epsilon^{(l)} \neq 0]$.
  \begin{equation}\label{eq:p_epsilon_sum}
     \begin{aligned}
-        p_{\epsilon,l,n} = \sum_{j=l}^n Pr[K_{\rho^+} = j] \cdot Pr[ K_\epsilon^{(l)} >0 \ \vert \ K_\rho^+ = j]
+        p_{\epsilon,l,n} = \sum_{j=l}^n Pr[K_{\rho^+} = j] \cdot Pr[ K_\epsilon^{(l)} >0 \ \vert \ K_\rho^+ = j] \ \ ,
     \end{aligned}
 \end{equation}
+while we have useful expression for the first term in the sum, we still require a tractible expression for the second term in this sum. More specifically, we look to find an espression for the probability associated with the sum of random indicator variables in Eq. (\ref{eq:indicator_sum}).
 
-While we have useful expression for the first term in the sum, we still require a tractible expression for the second term in this sum. More specifically, we look to find an espression for the probability associated with the sum of random indicator variables in Eq. (\ref{eq:indicator_sum}).
-
-It is very important to note at that the argument from one iteration of the sum to the next in Eq. (\ref{eq:indicator_sum}) are not necessarily independent. This follows from the fact that the arbitrary subsets of $\mathsf{C}$ may have intersections. Therefore, the random variables that correspond to these sets will also be dependent. For example, consider tow subsets of $\mathsf{C}$, $\mathsf{A}\subset\mathsf{C}$ and $\mathsf{B}\subset\mathsf{C}$. In the case that $\mathsf{A}\cap\mathsf{B} = \lbrace \emptyset \rbrace$, the the indicator random variables $1_{\mathsf{A}}$ and $1_\mathsf{B}$ will also be independent. However, when $\mathsf{A}\cap\mathsf{B} \neq \lbrace \emptyset \rbrace$, then the random variables $1_{\mathsf{A}}$ and $1_\mathsf{B}$ are mutually dependent. It is important to account for this dependence for the sake of developing an accurate bound on $p_\epsilon$. A graph-based approach will be adopted as in \cite{Swannack2005}, \cite{Janson2004} to address this problem.
+It is very important to note that the arguments of the sum in Eq. (\ref{eq:indicator_sum}) are not necessarily independent. This follows from the fact that the arbitrary subsets of $\mathsf{C}$ may have intersections. Therefore, the random variables that correspond to these sets may also be dependent. For example, consider two subsets of $\mathsf{C}$, $\mathsf{A}\subset\mathsf{C}$ and $\mathsf{B}\subset\mathsf{C}$. In the case that $\mathsf{A}\cap\mathsf{B} = \lbrace \emptyset \rbrace$, the the indicator random variables $1_{\mathsf{A}}$ and $1_\mathsf{B}$ will also be independent. However, when $\mathsf{A}\cap\mathsf{B} \neq \lbrace \emptyset \rbrace$, then the random variables $1_{\mathsf{A}}$ and $1_\mathsf{B}$ are mutually dependent. It is important to account for this dependence for the sake of developing an accurate bound on $p_\epsilon$. A graph-based approach will be adopted as in \cite{Swannack2005}, \cite{Janson2004} to address this problem.
